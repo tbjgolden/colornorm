@@ -16,7 +16,7 @@
 
 # 1.0.6
 
-* Now passes through invalid colour functions.
+* Now passes through invalid color functions.
 
 # 1.0.5
 

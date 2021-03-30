@@ -2,7 +2,7 @@ import test from 'ava';
 import min from '..';
 
 function isEqual (t, input, output, options = {}) {
-    t.deepEqual(min(input, options), output);
+  t.deepEqual(min(input, options), output);
 }
 
 test('should lowercase keywords', isEqual, 'RED', 'red');
@@ -39,6 +39,6 @@ test('should convert percentage based rgba values (5)', isEqual, 'rgba(100%,64.7
 test('should pass through on invalid rgb functions', isEqual, 'rgb(50%,23,54)', 'rgb(50%,23,54)');
 
 test('should pass through if not recognised', t => {
-    t.deepEqual(min('Unrecognised'), 'Unrecognised');
-    t.deepEqual(min('inherit'), 'inherit');
+  t.deepEqual(min('Unrecognised'), 'Unrecognised');
+  t.deepEqual(min('inherit'), 'inherit');
 });
