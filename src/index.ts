@@ -1,49 +1,36 @@
-import color from 'color';
-import colorNames from './lib/colorNames';
-import toShorthand from './lib/toShorthand';
-import * as ctype from './lib/colorType';
-import trim from './lib/stripWhitespace';
-import zero from './lib/trimLeadingZero';
+import colorString from 'color-string'
+import { hslToRgb } from './hslToRgb'
+import { hwlToRgb } from './hwlToRgb'
 
-const filterColor = callback => Object.keys(colorNames).filter(callback);
-const shorter = (a, b) => (a && a.length < b.length ? a : b).toLowerCase();
+// const shorterOf = (a: string, b: string): string => (a && a.length < b.length ? a : b);
 
-export default (color, opts = {}) => {
-  if (ctype.isRGBorHSL(color)) {
-    let c;
-    // Pass through invalid rgb/hsl functions
-    try {
-      c = color(color);
-    } catch (err) {
-      return color;
-    }
-    if (c.alpha() === 1) {
-      // At full alpha, just use hex
-      color = c.hexString();
+export default (
+  cssColor: string,
+  opts: Partial<{ legacy: boolean }> = {}
+): string => {
+  const colorDetails = colorString.get(cssColor)
+  if (colorDetails === null) return cssColor
+
+  if (opts.legacy && colorDetails.value[3] === 0) return 'transparent'
+
+  const { model, value } = colorDetails
+
+  let rgb: [number, number, number, number]
+  if (model == 'rgb') {
+    rgb = value
+  } else {
+    if (model === 'hsl') {
+      // convert to rgb
+      rgb = hslToRgb(value)
+    } else if (model === 'hwb') {
+      // convert to rgb
+      rgb = hwlToRgb(value)
     } else {
-      let rgb = c.rgb();
-      if (
-        !opts.legacy &&
-        !rgb.r &&
-        !rgb.g &&
-        !rgb.b &&
-        !rgb.a
-      ) {
-        return 'transparent';
-      }
-      let hsla = c.hslaString();
-      let rgba = c.rgbString();
-      return zero(trim(hsla.length < rgba.length ? hsla : rgba));
+      throw new Error(
+        `colornorm does not support this unknown color format (${cssColor}) - leave an issue`
+      )
     }
   }
-  if (ctype.isHex(color)) {
-    color = toShorthand(color.toLowerCase());
-    let keyword = filterColor(key => colorNames[key] === color)[0];
-    return shorter(keyword, color);
-  } else if (ctype.isKeyword(color)) {
-    let hex = colorNames[filterColor(k => k === color.toLowerCase())[0]];
-    return shorter(hex, color);
-  }
-  // Possibly malformed, just pass through
-  return color;
-};
+
+  // convert rgb to output type
+}
