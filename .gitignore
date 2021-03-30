@@ -1,3 +1,18 @@
-dist
+.DS_Store
+
+# Dependencies
 node_modules
-npm-debug.log
+
+# Generated files
+/dist
+/coverage
+/compiled
+.cache-loader
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.log

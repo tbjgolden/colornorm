@@ -1,61 +1,36 @@
-# colormin [![Build Status](https://travis-ci.org/ben-eb/colormin.svg?branch=master)][ci] [![NPM version](https://badge.fury.io/js/colormin.svg)][npm] [![Dependency Status](https://gemnasium.com/ben-eb/colormin.svg)][deps]
+# `colornorm`
 
-> Turn a CSS color into its smallest representation.
+[![npm version](https://img.shields.io/npm/v/colornorm.svg?style=flat-square)](https://www.npmjs.com/package/colornorm)
+[![test coverage](https://img.shields.io/badge/dynamic/json?style=flat-square&color=brightgreen&label=coverage&query=%24.total.branches.pct&suffix=%25&url=https%3A%2F%2Funpkg.com%2Fcolornorm%2Fcoverage%2Fcoverage-summary.json)](https://www.npmjs.com/package/colornorm)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/tbjgolden/colornorm/Release?style=flat-square)](https://github.com/tbjgolden/colornorm/actions?query=workflow%3ARelease)
 
-## Install
+> **PostCSS plugin for normalizing colors**
 
-With [npm](https://npmjs.org/package/colormin) do:
+## Installation
 
-```
-npm install colormin --save
-```
-
-
-## Example
-
-```js
-var colormin = require('colormin');
-console.log(colormin('rgba(255, 0, 0, 1)'));
-
-// => 'red'
+```sh
+npm install colornorm --save
+# yarn add colornorm
 ```
 
-colormin works for rgb, rgba, hsl, hsla, hex & css color keywords. See more
-example output in the [tests](src/__tests__/index.js). Note that colormin does
-not convert invalid CSS colors, as it is not a color validator.
+Alternatively, there are also client web builds available:
 
+<!-- IMPORTANT: Do not delete or change the comments in the code block below -->
 
-## API
+```html
+<!-- Dependencies -->
 
-### colormin(color, [options])
+<!-- window.ColorNorm -->
+<script src="https://unpkg.com/colornorm/dist/colornorm.umd.js"></script>
+```
 
-#### color
+## Documentation
 
-Type: `string`  
-
-The color to minify.
-
-#### options
-
-##### legacy
-
-Type: `boolean`  
-Default: `false`
-
-Set this to `true` to enable IE < 10 compatibility; the browser chokes on the
-`transparent` keyword, so in this mode the conversion from `rgba(0,0,0,0)`
-is turned off.
-
-## Contributing
-
-Pull requests are welcome. If you add functionality, then please add unit tests
-to cover it.
-
+- [`Docs`](docs)
+- [`API`](docs/api)
 
 ## License
 
-MIT © [Ben Briggs](http://beneb.info)
+MIT
 
-[ci]:   https://travis-ci.org/ben-eb/colormin
-[deps]: https://gemnasium.com/ben-eb/colormin
-[npm]:  http://badge.fury.io/js/colormin
+<!-- Original starter readme: https://github.com/tbjgolden/create-typescript-react-library -->
