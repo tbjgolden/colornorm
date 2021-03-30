@@ -1,6 +1,7 @@
-import has from 'has';
 import colorNames from './colorNames';
 import toLonghand from './toLonghand';
+
+const colorNamesSet = new Set(Object.keys(colorNames));
 
 export const isHex = color => {
   if (color[0] === '#') {
@@ -12,4 +13,4 @@ export const isHex = color => {
 
 export const isRGBorHSL = color => /^(rgb|hsl)a?\(.*?\)/.test(color);
 
-export const isKeyword = color => has(colorNames, color.toLowerCase());
+export const isKeyword = color => colorNamesSet.has(color.toLowerCase());
