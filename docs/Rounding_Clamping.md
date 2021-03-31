@@ -14,4 +14,6 @@ for alpha, which is of greater precision. Which do we use?
 
 ## Proposed solution
 
-Serialize every color in transit as an 8 hex color.
+- Input
+- rgba(int(0, 255), int(0, 255), int(0, 255), int(0, 100))
+- Output
