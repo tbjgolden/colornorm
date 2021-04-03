@@ -6,6 +6,46 @@
 
 > **PostCSS plugin for normalizing colors**
 
+Convert different syntaxes to a single one.
+
+Useful for de-duplicating colors, and standardizing a stylesheet on one color
+syntax.
+
+You may assume that the same input color will map the same output color,
+regardless of input syntax.
+
+Invalid color syntax returns null. Global values ("inherit", "initial", "unset")
+also return null.
+
+## Usage
+
+```js
+const colornorm = require('colornorm')
+
+// Any crazy valid CSS color you can think of
+const inputs = [
+  'red',
+  'RED',
+  '#f00',
+  '#ff0000',
+  '#ff0000ff',
+  'rgb(255,0,0)',
+  'rgb(255 0 0)',
+  'rgba(255, 0, 0, 1)',
+  'rgb(255 0 0 / 1)',
+  'hsl(0, 100%, 50%)',
+  'hsla(0, 100%, 50%, 1)'
+  // hwb, cmyk, lab, lch inputs also supported
+]
+
+const outputs = inputs.map((input) => colornorm(input))
+// all are 'hsl(0 100% 50%)'
+
+// output styles: 'hsl' (default as most human friendly widely adopted format), 'hwb', 'lab', 'lch', 'cmyk', 'rgb', 'hex'
+const outputs = inputs.map((input) => colornorm(input, 'hex'))
+// all are '#f00'
+```
+
 ## Installation
 
 ```sh

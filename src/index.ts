@@ -4,12 +4,14 @@ import convert from 'color-convert'
 export default (
   cssColorString: string,
   outputType?: 'hsl' | 'hwb' | 'lab' | 'lch' | 'cmyk' | 'rgb' | 'hex'
-): string => {
+): string | null => {
   const output = outputType ?? 'hsl'
   const inputString = cssColorString.toLowerCase().trim()
 
+  if (inputString === 'currentcolor') return 'currentcolor'
+
   const parsedColor = parseColor(inputString)
-  if (parsedColor === null) return inputString
+  if (parsedColor === null) return null
 
   // If alpha is zero, it is transparent, normalize to 0,0,0,0
   const transparent: RGB = {
