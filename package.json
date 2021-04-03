@@ -1,7 +1,7 @@
 {
   "name": "colornorm",
   "version": "0.0.0-development",
-  "description": "PostCSS plugin for normalizing colors",
+  "description": "Normalize CSS colors in a spec compliant way",
   "main": "dist/index.js",
   "module": "dist/colornorm.esm.js",
   "umd": "dist/colornorm.umd.js",
@@ -37,7 +37,13 @@
     }
   },
   "keywords": [
-    "typescript"
+    "css",
+    "typescript",
+    "js",
+    "ts",
+    "color",
+    "normalize",
+    "level-4"
   ],
   "license": "MIT",
   "bugs": {
