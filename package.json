@@ -124,5 +124,10 @@
   "eslintConfig": {
     "root": true,
     "extends": "./config/eslint.config.js"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
